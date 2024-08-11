@@ -31,3 +31,26 @@ lenient as we work out the kinks.  I expect everyone will get 100% on the first 
 down my code.
 
 The second part may have a bit more variation, but again I expect most teams to do well on it.
+
+### First Checkpoint
+
+For the first checkpoint you will need to record a demo of the following:
+
+* Adding a TODO
+* Marking a TODO complete
+* Deleting a TODO
+* Viewing only incomplete TODOs
+* Viewing only complete TODOs
+* Reordering TODOs
+
+I suggest you use [OBS](https://obsproject.com/) to record the demo, and then submit it as an MP4 in D2L.
+
+I will also inspect your repo to ensure you properly implemented the app.
+
+### Second Checkpoint
+
+For the second checkpoint each group will give a short presentation (<10 minutes) of their feature as well as a 
+walk-through of the code
+
+We will have a vote for the best feature of the class, that team will recieve free copies of "Hypermedia Systems" from
+me.
