@@ -67,20 +67,20 @@ We will be using the following tools in this class:
 |--------------|----------------------------------------------|--------------------------------------|--------------------------|
 | Week 1       | ***                                          | Class Introduction, History & Github |                          |
 | Week 2       | Hypermedia Systems                           | Intro to Flask                       | **Github Repo Due**      |
-| Week 3       | HTML Deep Dive                               | **Quiz 1**                           |                          |
-| Week 4       | Creating A Web 1.0 TODO App 1                | Creating A Web 1.0 TODO App 2        |                          |
-| Week 5       | CSS & Styling                                | **Quiz 2**                           |                          |
-| Week 6       | Theory: Roy Fielding's Thesis                | Introduction to htmx                 |                          |
-| Week 7       | Improving our TODO app with htmx             | **Quiz 3**                           |                          |
+| Week 3       | HTML 1                                       | HTML 2                               |                          |
+| Week 4       | TODO App - Basic Infrastructure & MVC        | **Quiz 1**                           |                          |
+| Week 5       | TODO App - Database & Scripting              | CSS & Styling                        |                          |
+| Week 6       | REST: Roy Fielding's Thesis                  | Introduction to htmx                 |                          |
+| Week 7       | Improving our TODO app with htmx             | **Quiz 2**                           |                          |
 | Week 8       | JavaScript - The Good Parts                  | JavaScript - Reactivity w/Alpine.js  | First Project Checkpoint |
-| Week 9       | Project Feature Ideation Session             | **Quiz 4**                           |                          |
-| Week 10      | Hyperscript                                  | Redis & Background Jobs              |                          |
-| Week 11      | More CSS: Layouts                            | **Quiz 5**                           |                          |
-| Week 12      | Web Security Considerations                  | Deploying Web Apps with Railway      |                          |
-| Week 13      | Accessibility                                | **Quiz 6**                           |                          |
-| Week 14      | Misc Web Technologies (Web Components, etc.) | Help Session                         |                          |
+| Week 9       | Project Ideas Session                        | Redis & Background Jobs              |                          |
+| Week 10      | Hyperscript                                  | **Quiz 3**                           |                          |
+| Week 11      | More CSS: Layouts                            | Web Security                         |                          |
+| Week 12      | Accessibility                                | Deploying Web Apps with Railway      |                          |
+| Week 13      | Misc Web Technologies (Web Components, etc.) | **Quiz 4**                           |                          |
+| Week 14      | htmx.org/essays                              | Help Session                         |                          |
 | Thanksgiving | ***                                          | ***                                  |                          |
-| Week 15      | The htmx essays                              | Project Demos & Code Review          |                          |
+| Week 15      | Project Demos                                | Project Demos                        |                          |
 | Finals Week  |                                              |                                      |                          |
 
 
