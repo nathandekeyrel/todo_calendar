@@ -63,24 +63,24 @@ We will be using the following tools in this class:
 
 ## 491 Schedule
 
-| Week         | Tuesday                                      | Thursday                             | Due                      |
-|--------------|----------------------------------------------|--------------------------------------|--------------------------|
-| Week 1       | ***                                          | Class Introduction, History & Github |                          |
-| Week 2       | Hypermedia Systems                           | Intro to Flask                       | **Github Repo Due**      |
-| Week 3       | HTML 1                                       | HTML 2                               |                          |
-| Week 4       | TODO App - Basic Infrastructure & MVC        | **Quiz 1**                           |                          |
-| Week 5       | TODO App - Database & Scripting              | CSS & Styling                        |                          |
-| Week 6       | REST: Roy Fielding's Thesis                  | Introduction to htmx                 |                          |
-| Week 7       | Improving our TODO app with htmx             | **Quiz 2**                           |                          |
-| Week 8       | JavaScript - The Good Parts                  | JavaScript - Reactivity w/Alpine.js  | First Project Checkpoint |
-| Week 9       | Project Ideas Session                        | Redis & Background Jobs              |                          |
-| Week 10      | Hyperscript                                  | **Quiz 3**                           |                          |
-| Week 11      | More CSS: Layouts                            | Web Security                         |                          |
-| Week 12      | Accessibility                                | Deploying Web Apps with Railway      |                          |
-| Week 13      | Misc Web Technologies (Web Components, etc.) | **Quiz 4**                           |                          |
-| Week 14      | htmx.org/essays                              | Help Session                         |                          |
-| Thanksgiving | ***                                          | ***                                  |                          |
-| Week 15      | Project Demos                                | Project Demos                        |                          |
-| Finals Week  |                                              |                                      |                          |
+| Week         | Tuesday                               | Thursday                                           | Due                      |
+|--------------|---------------------------------------|----------------------------------------------------|--------------------------|
+| Week 1       | ***                                   | Class Introduction, History & Github               |                          |
+| Week 2       | Hypermedia Systems                    | Intro to Flask                                     | **Github Repo Due**      |
+| Week 3       | HTML 1                                | HTML 2                                             |                          |
+| Week 4       | HTML 3                                | **Quiz 1**                                         |                          |
+| Week 5       | TODO App - Basic Infrastructure & MVC | TODO App - Database & Scripting                    |                          |
+| Week 6       | CSS 1                                 | CSS 2                                              |                          |
+| Week 7       | htmx                                  | **Quiz 2**                                         |                          |
+| Week 8       | Improving our TODO app with htmx      | JavaScript                                         | First Project Checkpoint |
+| Week 9       | Project Ideas Session                 | DOM APIs in Javascript                             |                          |
+| Week 10      | Reactivity w/Alpine.js                | **Quiz 3**                                         |                          |
+| Week 11      | Hyperscript                           | Accessibility & Web Security                       |                          |
+| Week 12      | Redis & Background Jobs               | Other Web Technologies (Web Components, SSE, etc.) |                          |
+| Week 13      | Performance & Logging in Web Apps     | **Quiz 4**                                         |                          |
+| Week 14      | REST: Roy Fielding's Thesis           | The htmx.org/essays                                |                          |
+| Thanksgiving | ***                                   | ***                                                |                          |
+| Week 15      | Final Project Demos                   | Final Project Demos                                |                          |
+| Finals Week  |                                       |                                                    |                          |
 
 
