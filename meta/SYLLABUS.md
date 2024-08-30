@@ -78,7 +78,7 @@ We will be using the following tools in this class:
 | Week 11      | Hyperscript                           | Accessibility & Web Security                       |                          |
 | Week 12      | Redis & Background Jobs               | Other Web Technologies (Web Components, SSE, etc.) |                          |
 | Week 13      | Performance & Logging in Web Apps     | **Quiz 4**                                         |                          |
-| Week 14      | REST: Roy Fielding's Thesis           | The htmx.org/essays                                |                          |
+| Week 14      | REST: Roy Fielding's Thesis           | Help Session                                       |                          |
 | Thanksgiving | ***                                   | ***                                                |                          |
 | Week 15      | Final Project Demos                   | Final Project Demos                                |                          |
 | Finals Week  |                                       |                                                    |                          |
