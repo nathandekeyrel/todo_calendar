@@ -67,10 +67,10 @@ We will be using the following tools in this class:
 |--------------|---------------------------------------|----------------------------------------------------|--------------------------|
 | Week 1       | ***                                   | Class Introduction, History & Github               |                          |
 | Week 2       | Hypermedia Systems                    | Intro to Flask                                     | **Github Repo Due**      |
-| Week 3       | HTML 1                                | HTML 2                                             |                          |
-| Week 4       | HTML 3                                | **Quiz 1**                                         |                          |
-| Week 5       | TODO App - Basic Infrastructure & MVC | TODO App - Database & Scripting                    |                          |
-| Week 6       | CSS 1                                 | CSS 2                                              |                          |
+| Week 3       | Building With Flask                   | HTML 1                                             |                          |
+| Week 4       | HTML 2                                | **Quiz 1**                                         |                          |
+| Week 5       | CSS 1                                 | CSS 2                                              |                          |
+| Week 6       | TODO App - Basic Infrastructure & MVC | TODO App - Database & Scripting                    |                          |
 | Week 7       | htmx                                  | **Quiz 2**                                         |                          |
 | Week 8       | Improving our TODO app with htmx      | JavaScript                                         | First Project Checkpoint |
 | Week 9       | Project Ideas Session                 | DOM APIs in Javascript                             |                          |

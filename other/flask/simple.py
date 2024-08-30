@@ -74,9 +74,11 @@ def form_post():
 def prg():
     if request.method == "POST":
         form_data = request.form["form_data"]  # ignore for now
+        session['form_data'] = form_data
         return redirect("/form/prg")
     else:
-        return render_template("prg.html.jinja")
+        form_data = session.pop("form_data", None)
+        return render_template("prg.html.jinja", form_data=form_data)
 
 
 app.secret_key = "3974c04332e8d15fa74080740400038783d106ff695ce77df86456992a531e2f"

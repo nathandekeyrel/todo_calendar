@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if form_data %}
-        {{ form_data }}
+        {{ form_data | e }}
     {% endif %}
     <form action="/form" method="POST">
         <label>
