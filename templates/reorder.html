@@ -1,28 +1,23 @@
-{% extends "base.html" %}
-
-{% block content %}
-<form action="/todos/reorder" method="post">
-
-    <ul id="todo-list" style="list-style:none">
+<form hx-post="/todos/reorder"
+      hx-target="main"
+      hx-swap="innerHTML show:main:top">
+    <ul id="todo-list">
         {% for todo in todos %}
-        <li>
-            <span class="handle">
-                <img src="/img/drag-handle.svg" width="20">
+            <li style="list-style: none">
+                <span class="handle">
+                    <img src="/img/drag-handle.svg" width="20">
                 </span> -
                 {{ todo.text }}
-            <input type="hidden" name="ids" value="{{ todo.id }}">
-        </li>
-    {% endfor %}
+                <input type="hidden" name="ids" value="{{ todo.id }}">
+            </li>
+        {% endfor %}
     </ul>
     <button>Save</button>
-    </form>
+</form>
+
 <script>
-
     new Sortable(document.getElementById('todo-list'), {
-    handle: '.handle',
-    animation: 150
-
-});
+        handle: '.handle', // handle's class
+        animation: 150
+    });
 </script>
-{% endblock %}
-

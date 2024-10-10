@@ -5,23 +5,17 @@
     <link rel="stylesheet" href="/css/site.css">
     <script src="/js/site.js"></script>
     <script src="/js/Sortable.js"></script>
-
+    <script src="/js/htmx-2.0.3.js"></script>
 </head>
 <body>
 <header class="container center">
-
-
     <h1><img style="height: 60px" src="/img/todo-white.svg"> TODOApp</h1>
-        <form>
-        <input type="search" name="q" style="float:right;width:400px" value="{{ search }}" action="/todos">
+    <form action="/todos">
+        <input style="float: right; width: 300px" type="search" name="q" value= {{ search }}>
     </form>
-            <form  action="/todos" method="get">
-            <button style="float:right;width:100px"> Clear </button>
-            </form>
-
 </header>
 <main class="container">
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </main>
 </body>
 </html>

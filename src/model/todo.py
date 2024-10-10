@@ -14,20 +14,19 @@ class Todo(Model):
     order = IntegerField(null=True)
 
     @classmethod
-    def all(cls,view,search=None):
+    def all(cls, view, search=None):
         select = Todo.select()
         if view == "active":
             select = select.where(Todo.complete == False)
         if view == "complete":
             select = select.where(Todo.complete == True)
         if search:
-            select = select.where(Todo.text.ilike("%"+search+"%"))
+            select = select.where(Todo.text.ilike("%" + search + "%"))
         return select.order_by(Todo.order)
 
     @classmethod
     def find(cls, todo_id):
         return Todo.get(Todo.id == todo_id)
-
 
     def toggle_completed(self):
         self.complete = not self.complete
@@ -38,7 +37,8 @@ class Todo(Model):
         for tid in id_list:
             todo = Todo.find(int(tid))
             todo.order = i
-            i = i+1
+            i = i + 1
             todo.save()
+
     class Meta:
         database = db
