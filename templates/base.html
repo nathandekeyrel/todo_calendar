@@ -11,7 +11,12 @@
 <header class="container center">
     <h1><img style="height: 60px" src="/img/todo-white.svg"> TODOApp</h1>
     <form action="/todos">
+
+        {% if search is none %}
+        <input style="float: right; width: 300px" type="search" name="q" value= ''>
+        {% else %}
         <input style="float: right; width: 300px" type="search" name="q" value= {{ search }}>
+        {% endif %}
     </form>
 </header>
 <main class="container">
