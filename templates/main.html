@@ -1,8 +1,12 @@
 <form action="/todos" method="post">
     <label>
         New Todo
-        <input {{ 'autofocus' if editing is undefined and not search}} required type="text" name="todo"
+        <br>
+        <input style=" max-width:40%"  {{ 'autofocus' if editing is undefined }} required type="text" name="todo"
                                                          placeholder="Enter a new TODO">
+
+        <input style=" max-width:20%" type="date" name="due_date" required value = {{ date_today }} min="2024-11-11" max="2025-11-11" />
+
     </label>
     <input type="hidden" name="view" value="{{ view }}">
 </form>
@@ -20,8 +24,9 @@
         <li>
             {% if todo.id == editing %}
                 <form method="post" action="/todos/{{ todo.id }}">
-                    <input autofocus required type="text" value="{{ todo.text }}" name="todo">
-                    <input type="hidden" name="view" value="{{ view }}">
+                    <input style=" max-width:40%" autofocus required type="text" value="{{ todo.text }}" name="todo">
+                    <input style=" max-width:25%" type="date" required value = {{ todo.due_date }} name="due_date" min="2024-11-11" max="2025-11-11" />
+
                 </form>
             {% else %}
                 <form hx-post="/todos/{{ todo.id }}/toggle"
@@ -38,7 +43,7 @@
                     {% if todo.complete %}
                         <del>
                     {% endif %}
-                    {{ todo.text }}
+                    {{ todo.text }} <strong>{{ todo.due_date }}</strong>
                     {% if todo.complete %}
                         </del>
                     {% endif %}

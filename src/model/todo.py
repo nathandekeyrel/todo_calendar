@@ -13,6 +13,7 @@ class Todo(Model):
     text = CharField()
     complete = BooleanField()
     order = IntegerField(null=True)
+    due_date = DateField()
 
     @classmethod
     def all(cls, view, search=None):
@@ -56,6 +57,19 @@ class Todo(Model):
             "days_in_current_month": days_in_current_month,
             "days_in_prev_month": days_in_prev_month
         }
+    @classmethod
+    def reorder_date(cls, id_list):
+        i = 0
+
+        temp_list= []
+        for id in id_list:
+            temp_list.append(Todo.find(int(id)))
+        temp_list.sort(key=lambda todo_date: datetime.strptime(str(todo_date.due_date), "%Y-%m-%d"))
+
+        for todo in temp_list:
+            todo.order = i
+            i = i + 1
+            todo.save()
 
     class Meta:
         database = db
