@@ -1,8 +1,10 @@
 <form action="/todos" method="post">
     <label>
         New Todo
-        <input {{ 'autofocus' if editing is undefined and not search}} required type="text" name="todo"
-                                                         placeholder="Enter a new TODO">
+        <input {{ 'autofocus' if editing is undefined and not search }}
+                required type="text"
+                name="todo"
+                placeholder="Enter a new TODO">
     </label>
     <input type="hidden" name="view" value="{{ view }}">
 </form>
@@ -12,8 +14,8 @@
    hx-swap="outerHTML">Reorder Todos</a>
 
 <a hx-get="/todos/calendar"
-        hx-target="main"
-        hx-swap="innerHTML">Calendar</a>
+   hx-target="main"
+   hx-swap="innerHTML">Calendar</a>
 
 <ol id="todos-list" style="list-style: none">
     {% for todo in todos %}
