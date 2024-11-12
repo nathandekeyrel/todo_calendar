@@ -15,7 +15,7 @@
         hx-target="main"
         hx-swap="innerHTML">Calendar</a>
 
-<ol id="todos-list">
+<ol id="todos-list" style="list-style: none">
     {% for todo in todos %}
         <li>
             {% if todo.id == editing %}
