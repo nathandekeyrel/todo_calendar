@@ -14,6 +14,7 @@ class Todo(Model):
     complete = BooleanField()
     order = IntegerField(null=True)
     due_date = DateField()
+    priority = IntegerField(default=0)
 
     @classmethod
     def all(cls, view, search=None):
@@ -25,7 +26,7 @@ class Todo(Model):
         if search:
             select = select.where(Todo.text.contains(search))
 
-        return select.order_by(Todo.order)
+        return select.order_by(Todo.priority.desc(), Todo.order)
 
     @classmethod
     def find(cls, todo_id):
@@ -70,6 +71,9 @@ class Todo(Model):
             todo.order = i
             i = i + 1
             todo.save()
+
+    def priority_marker(self):
+        return '!' * self.priority if self.priority > 0 else ''
 
     class Meta:
         database = db

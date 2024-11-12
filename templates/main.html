@@ -1,14 +1,38 @@
 <form action="/todos" method="post">
-    <label>
-        New Todo
-        <br>
-        <input style=" max-width:40%"  {{ 'autofocus' if editing is undefined }} required type="text" name="todo"
-                                                         placeholder="Enter a new TODO">
+    New Todo
+    <br>
+    <input style=" max-width:40%"
+            {{ 'autofocus' if editing is undefined and not search }}
+           required
+           type="text"
+           name="todo"
+           id="new-todo-input"
+           placeholder="Enter a new TODO">
 
-        <input style=" max-width:20%" type="date" name="due_date" required value = {{ date_today }} min="2024-11-11" max="2025-11-11" />
+    <fieldset class="priority-group" style="margin: 0; padding: 0; border: none;">
+        <label style="margin: 0;">
+            <input type="radio" name="priority" value="0" checked style="margin: 0;"
+                   data-hx-on:change="document.getElementById('new-todo-input').focus()">
+            Low
+        </label>
+        <label style="margin: 0;">
+            <input type="radio" name="priority" value="1" style="margin: 0;"
+                   data-hx-on:change="document.getElementById('new-todo-input').focus()">
+            !
+        </label>
+        <label style="margin: 0;">
+            <input type="radio" name="priority" value="2" style="margin: 0;"
+                   data-hx-on:change="document.getElementById('new-todo-input').focus()">
+            !!
+        </label>
+    </fieldset>
 
-    </label>
+    <input style=" max-width:20%" type="date" name="due_date" required value={{ date_today }} min="2024-11-11"
+           max="2025-11-11"
+           data-hx-on:change="document.getElementById('new-todo-input').focus()"/>
+
     <input type="hidden" name="view" value="{{ view }}">
+
 </form>
 
 <a hx-get="/todos/reorder"
@@ -16,16 +40,38 @@
    hx-swap="outerHTML">Reorder Todos</a>
 
 <a hx-get="/todos/calendar"
-        hx-target="main"
-        hx-swap="innerHTML">Calendar</a>
+   hx-target="main"
+   hx-swap="innerHTML">Calendar</a>
 
 <ol id="todos-list" style="list-style: none">
     {% for todo in todos %}
         <li>
             {% if todo.id == editing %}
                 <form method="post" action="/todos/{{ todo.id }}">
-                    <input style=" max-width:40%" autofocus required type="text" value="{{ todo.text }}" name="todo">
-                    <input style=" max-width:25%" type="date" required value = {{ todo.due_date }} name="due_date" min="2024-11-11" max="2025-11-11" />
+                    <input style=" max-width:40%" autofocus required type="text" value="{{ todo.text }}" name="todo" id="edit-todo-input-{{ todo.id }}">
+                    <fieldset class="priority-group" style="margin: 0; padding: 0; border: none;">
+                        <label style="margin: 0;">
+                            <input type="radio" name="priority" value="0" {{ 'checked' if todo.priority == 0 }}
+                                   style="margin: 0;"
+                                   data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
+                            Low
+                        </label>
+                        <label style="margin: 0;">
+                            <input type="radio" name="priority" value="1" {{ 'checked' if todo.priority == 1 }}
+                                   style="margin: 0;"
+                                   data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
+                            !
+                        </label>
+                        <label style="margin: 0;">
+                            <input type="radio" name="priority" value="2" {{ 'checked' if todo.priority == 2 }}
+                                   style="margin: 0;"
+                                   data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
+                            !!
+                        </label>
+                    </fieldset>
+                    <input style=" max-width:25%" type="date" required value={{ todo.due_date }} name="due_date"
+                           min="2024-11-11" max="2025-11-11"
+                           data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()"/>
 
                 </form>
             {% else %}
@@ -43,7 +89,7 @@
                     {% if todo.complete %}
                         <del>
                     {% endif %}
-                    {{ todo.text }} <strong>{{ todo.due_date }}</strong>
+                    {{ todo.text }} {{ todo.priority_marker() }} <strong>{{ todo.due_date }}</strong>
                     {% if todo.complete %}
                         </del>
                     {% endif %}
