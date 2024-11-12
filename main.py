@@ -3,6 +3,7 @@ from flask import Flask, request, render_template
 from werkzeug.utils import redirect
 
 from src.model.todo import Todo, db
+from datetime import datetime
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -85,6 +86,19 @@ def update_todo_order():
     Todo.reorder(id_list)
     todos = Todo.all(view)
     return render_template("main.html", todos=todos, view=view, editing=None)
+
+
+@app.get('/todos/calendar')
+def calendar_view():
+    view = request.args.get('view', None)
+    year = request.args.get('year', datetime.now().year, type=int)
+    month = request.args.get('month', datetime.now().month, type=int)
+
+    # Adjust the month/year for next/previous navigation
+    current_date = datetime(year, month, 1)
+    date_info = Todo.get_date(current_date)
+
+    return render_template("calendar.html", view=view, **date_info, month=month, year=year, current_date=current_date)
 
 
 def add_view_filter(view):

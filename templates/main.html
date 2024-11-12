@@ -6,9 +6,15 @@
     </label>
     <input type="hidden" name="view" value="{{ view }}">
 </form>
+
 <a hx-get="/todos/reorder"
    hx-target="#todos-list"
    hx-swap="outerHTML">Reorder Todos</a>
+
+<a hx-get="/todos/calendar"
+        hx-target="main"
+        hx-swap="innerHTML">Calendar</a>
+
 <ol id="todos-list">
     {% for todo in todos %}
         <li>
