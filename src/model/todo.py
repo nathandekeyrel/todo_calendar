@@ -22,7 +22,7 @@ class Todo(Model):
         if view == "complete":
             select = select.where(Todo.complete == True)
         if search:
-            select = select.where(Todo.text.ilike("%" + search + "%"))
+            select = select.where(Todo.text.contains(search))
 
         return select.order_by(Todo.order)
 

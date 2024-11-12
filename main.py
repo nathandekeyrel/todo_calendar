@@ -33,8 +33,12 @@ def index():
 @app.get('/todos')
 def all_todos():
     view = request.args.get('view', None)
-    query = request.args.get('q', None)
+    query = request.args.get('q', '')
     todos = Todo.all(view, query)
+
+    if request.headers.get('HX-Request'):
+        return render_template("main.html", todos=todos, view=view, search=query)
+
     return render_template("index.html", todos=todos, view=view, search=query)
 
 
@@ -43,6 +47,11 @@ def create_todo():
     view = request.form.get('view', None)
     todo = Todo(text=request.form['todo'], complete=False)
     todo.save()
+
+    if request.headers.get('HX-Request'):
+        todos = Todo.all(view)
+        return render_template("main.html", todos=todos, view=view)
+
     return redirect('/todos' + add_view_filter(view))
 
 

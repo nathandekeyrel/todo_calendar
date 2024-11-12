@@ -1,7 +1,7 @@
 <form action="/todos" method="post">
     <label>
         New Todo
-        <input {{ 'autofocus' if editing is undefined }} required type="text" name="todo"
+        <input {{ 'autofocus' if editing is undefined and not search}} required type="text" name="todo"
                                                          placeholder="Enter a new TODO">
     </label>
     <input type="hidden" name="view" value="{{ view }}">
@@ -50,20 +50,29 @@
         </li>
     {% endfor %}
 </ol>
-<nav>
+<nav hx-target="main" hx-push-url="true">
     <ul>
         <li>
-            <a class="{{ 'contrast' if view == None }}" href="/todos">All</a>
+            <a hx-get="/todos"
+               class="{{ 'contrast' if view == None }}">
+                All
+            </a>
         </li>
     </ul>
     <ul>
         <li>
-            <a class="{{ 'contrast' if view == 'active' }}" href="/todos?view=active">Active</a>
+            <a hx-get="/todos?view=active"
+               class="{{ 'contrast' if view == 'active' }}">
+                Active
+            </a>
         </li>
     </ul>
     <ul>
         <li>
-            <a class="{{ 'contrast' if view == 'complete' }}" href="/todos?view=complete">Complete</a>
+            <a hx-get="/todos?view=complete"
+               class="{{ 'contrast' if view == 'complete' }}">
+                Complete
+            </a>
         </li>
     </ul>
 </nav>
