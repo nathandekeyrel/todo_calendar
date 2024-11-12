@@ -13,6 +13,8 @@ class Todo(Model):
     text = CharField()
     complete = BooleanField()
     order = IntegerField(null=True)
+    due_date = DateField()
+    priority = IntegerField(default=0)
 
     @classmethod
     def all(cls, view, search=None):
@@ -24,7 +26,7 @@ class Todo(Model):
         if search:
             select = select.where(Todo.text.contains(search))
 
-        return select.order_by(Todo.order)
+        return select.order_by(Todo.priority.desc(), Todo.order)
 
     @classmethod
     def find(cls, todo_id):
@@ -56,6 +58,22 @@ class Todo(Model):
             "days_in_current_month": days_in_current_month,
             "days_in_prev_month": days_in_prev_month
         }
+    @classmethod
+    def reorder_date(cls, id_list):
+        i = 0
+
+        temp_list= []
+        for id in id_list:
+            temp_list.append(Todo.find(int(id)))
+        temp_list.sort(key=lambda todo_date: datetime.strptime(str(todo_date.due_date), "%Y-%m-%d"))
+
+        for todo in temp_list:
+            todo.order = i
+            i = i + 1
+            todo.save()
+
+    def priority_marker(self):
+        return '!' * self.priority if self.priority > 0 else ''
 
     class Meta:
         database = db

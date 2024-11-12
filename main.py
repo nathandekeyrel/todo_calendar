@@ -37,15 +37,16 @@ def all_todos():
     todos = Todo.all(view, query)
 
     if request.headers.get('HX-Request'):
-        return render_template("main.html", todos=todos, view=view, search=query)
+        return render_template("main.html", todos=todos, view=view, search=query, date_today = datetime.today().strftime('%Y-%m-%d'))
 
-    return render_template("index.html", todos=todos, view=view, search=query)
+    return render_template("index.html", todos=todos, view=view, search=query, date_today = datetime.today().strftime('%Y-%m-%d'))
 
 
 @app.post('/todos')
 def create_todo():
     view = request.form.get('view', None)
-    todo = Todo(text=request.form['todo'], complete=False)
+    priority = int(request.form.get('priority', 0))
+    todo = Todo(text=request.form['todo'], complete=False,due_date = request.form['due_date'])
     todo.save()
 
     if request.headers.get('HX-Request'):
@@ -62,14 +63,14 @@ def toggle_todo(id):
     todo.toggle_completed()
     todo.save()
     todos = Todo.all(view)
-    return render_template("main.html", todos=todos, view=view, editing=None)
+    return render_template("main.html", todos=todos, view=view, editing=None,date_today = datetime.today().strftime('%Y-%m-%d'))
 
 
 @app.get('/todos/<id>/edit')
 def edit_todo(id):
     view = request.args.get('view', None)
     todos = Todo.all(view)
-    return render_template("index.html", todos=todos, editing=int(id), view=view)
+    return render_template("index.html", todos=todos, editing=int(id), view=view, date_today = datetime.today().strftime('%Y-%m-%d'))
 
 
 @app.post('/todos/<id>')
@@ -77,6 +78,8 @@ def update_todo(id):
     view = request.form.get('view', None)
     todo = Todo.find(int(id))
     todo.text = request.form['todo']
+    todo.due_date = request.form['due_date']
+    todo.priority = int(request.form.get('priority', todo.priority))
     todo.save()
     return redirect('/todos' + add_view_filter(view))
 
@@ -85,7 +88,7 @@ def update_todo(id):
 def show_reorder_ui():
     view = request.args.get('view', None)
     todos = Todo.all(view)
-    return render_template("reorder.html", todos=todos)
+    return render_template("reorder.html", todos=todos, date_today = datetime.today().strftime('%Y-%m-%d'))
 
 
 @app.post('/todos/reorder')
@@ -94,7 +97,7 @@ def update_todo_order():
     id_list = request.form.getlist("ids")
     Todo.reorder(id_list)
     todos = Todo.all(view)
-    return render_template("main.html", todos=todos, view=view, editing=None)
+    return render_template("main.html", todos=todos, view=view, editing=None,date_today = datetime.today().strftime('%Y-%m-%d'))
 
 
 @app.get('/todos/calendar')
