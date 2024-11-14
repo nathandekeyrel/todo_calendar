@@ -1,0 +1,14 @@
+{
+  "name": "todo_calendar_assets",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/site.css",
+    "watch": "tailwindcss -i ./static/css/input.css -o ./static/css/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "@tailwindcss/forms": "^0.5.7"
+  }
+}

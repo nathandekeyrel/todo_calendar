@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom components */
+@layer components {
+    .page-container {
+        @apply w-full max-w-7xl px-8 py-8;
+    }
+
+    .calendar-cell-base {
+        @apply bg-gray-800/75 rounded-lg p-6 min-h-[350px] transition-colors;
+    }
+
+    .calendar-cell {
+        @apply calendar-cell-base hover:bg-gray-700/75;
+    }
+
+    .calendar-cell-faded {
+        @apply calendar-cell-base bg-gray-800/25 hover:bg-gray-800/40;
+    }
+
+    .calendar-day-header {
+        @apply text-center text-gray-400 font-medium py-4 text-lg;
+    }
+
+    .calendar-date {
+        @apply text-xl font-medium text-blue-400 mb-4;
+    }
+
+    .todo-item {
+        @apply text-base p-3 rounded bg-gray-700/50 hover:bg-gray-600/50 transition-colors;
+    }
+
+    .btn-calendar {
+        @apply px-5 py-3 rounded bg-gray-700/50 hover:bg-gray-600/50 transition-colors
+               text-base font-medium flex items-center space-x-3;
+    }
+}
