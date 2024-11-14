@@ -48,7 +48,9 @@ def all_todos():
 def create_todo():
     view = request.form.get('view', None)
     priority = int(request.form.get('priority', 0))
-    todo = Todo(text=request.form['todo'], complete=False, priority=priority, due_date=request.form['due_date'])
+    recurring = request.form.get('recurring', None)
+    todo = Todo(text=request.form['todo'], complete=False, priority=priority,
+                due_date=request.form['due_date'], recurring=recurring)
     todo.save()
 
     if request.headers.get('HX-Request'):
@@ -84,6 +86,7 @@ def update_todo(id):
     todo.text = request.form['todo']
     todo.due_date = request.form['due_date']
     todo.priority = int(request.form.get('priority', todo.priority))
+    todo.recurring = request.form.get('recurring', None)
     todo.save()
     return redirect('/todos' + add_view_filter(view))
 
@@ -114,9 +117,9 @@ def calendar_view():
     # Adjust the month/year for next/previous navigation
     current_date = datetime(year, month, 1)
     date_info = Todo.get_date(current_date)
-    todos = Todo.get_current_month_of_todos(year,month)
 
-    return render_template("calendar.html", view=view, **date_info, month=month, year=year, current_date=current_date, todos_map = todos)
+    return render_template("calendar.html", view=view, Todo=Todo, **date_info,
+                           month=month, year=year, current_date=current_date)
 
 
 def add_view_filter(view):
