@@ -78,6 +78,7 @@
                 <form hx-post="/todos/{{ todo.id }}/toggle"
                       hx-target="main"
                       ondblclick="document.getElementById('edit-{{ todo.id }}').submit()">
+                    {{ todo.priority_marker() }}
                     <button style="all:unset">
                         {% if todo.complete %}
                             <img src="/img/todo-white.svg" width="20px">
@@ -89,7 +90,7 @@
                     {% if todo.complete %}
                         <del>
                     {% endif %}
-                    {{ todo.text }} {{ todo.priority_marker() }} <strong>{{ todo.due_date }}</strong>
+                    {{ todo.text }}  <strong>{{ todo.return_formatted_date() }}</strong>
                     {% if todo.complete %}
                         </del>
                     {% endif %}

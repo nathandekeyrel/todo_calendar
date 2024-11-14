@@ -26,13 +26,24 @@
 
     <!-- Current month days -->
     {% for i in range(1, days_in_current_month + 1) %}
-        <div class="calendar-cell" id="calendar-cell-{{ i }}">{{ i }}</div>
+        <div class="calendar-cell" id="calendar-cell-{{ i }}">
+
+                   <ul>
+                       {% for j in todos_map[i] %}
+                <li>{{ j.text }}</li>
+                       {% endfor %}
+             </ul>
+        </div>
     {% endfor %}
 
     <!-- Next month days -->
     {% set next_month_days = 35 - (days_in_current_month + start_day) %}
     {% for i in range(1, next_month_days + 1) %}
-        <div class="calendar-cell faded" id="post-month-cell-{{ i }}">{{ i }}</div>
+        <div class="calendar-cell faded" id="post-month-cell-{{ i }}">
+            <ol>
+                <li>{{ i }}</li>
+            </ol>
+        </div>
     {% endfor %}
 </div>
 

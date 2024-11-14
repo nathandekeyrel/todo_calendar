@@ -114,8 +114,9 @@ def calendar_view():
     # Adjust the month/year for next/previous navigation
     current_date = datetime(year, month, 1)
     date_info = Todo.get_date(current_date)
+    todos = Todo.get_current_month_of_todos(year,month)
 
-    return render_template("calendar.html", view=view, **date_info, month=month, year=year, current_date=current_date)
+    return render_template("calendar.html", view=view, **date_info, month=month, year=year, current_date=current_date, todos_map = todos)
 
 
 def add_view_filter(view):
