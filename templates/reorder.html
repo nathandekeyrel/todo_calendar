@@ -1,23 +1,31 @@
-<form hx-post="/todos/reorder"
-      hx-target="main"
-      hx-swap="innerHTML show:main:top">
-    <ul id="todo-list">
-        {% for todo in todos %}
-            <li style="list-style: none">
-                <span class="handle">
-                    <img src="/img/drag-handle.svg" width="20">
-                </span> -
-                {{ todo.text }}
-                <input type="hidden" name="ids" value="{{ todo.id }}">
-            </li>
-        {% endfor %}
-    </ul>
-    <button>Save</button>
-</form>
+<div class="space-y-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-blue-500">Reorder Todos</h2>
+    </div>
+
+    <form hx-post="/todos/reorder"
+          hx-target="main"
+          hx-swap="innerHTML show:main:top"
+          class="bg-white border rounded-lg p-6">
+        <ul id="todo-list" class="space-y-2 mb-6">
+            {% for todo in todos %}
+                <li class="flex items-center space-x-3 bg-gray-50 border p-3 rounded cursor-move hover:bg-gray-100 transition-colors">
+                    <span class="handle cursor-grab active:cursor-grabbing">
+                        <img src="/img/drag-handle.svg" class="w-5 h-5 opacity-50">
+                    </span>
+                    <span class="flex-1">{{ todo.text }}</span>
+                    <input type="hidden" name="ids" value="{{ todo.id }}">
+                </li>
+            {% endfor %}
+        </ul>
+        <button class="btn-primary">Save Order</button>
+    </form>
+</div>
 
 <script>
     new Sortable(document.getElementById('todo-list'), {
-        handle: '.handle', // handle's class
-        animation: 150
+        handle: '.handle',
+        animation: 150,
+        ghostClass: 'bg-gray-100'
     });
 </script>

@@ -1,29 +1,37 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>TODO App</title>
-    <link rel="stylesheet" href="/css/pico.lime.css">
     <link rel="stylesheet" href="/css/site.css">
     <script src="/js/site.js"></script>
     <script src="/js/Sortable.js"></script>
     <script src="/js/htmx-2.0.3.js"></script>
 </head>
-<body>
-<header class="container center">
-    <h1><img style="height: 60px" src="/img/todo-white.svg"> TODOApp</h1>
-    <form hx-get="/todos"
-          hx-trigger="input delay:200ms, search"
-          hx-target="main"
-          hx-push-url="true"
-          >
-        <input style="float: right; width: 300px"
-               type="search"
-               name="q"
-               value="{{ search }}"
-               placeholder="Search todos...">
-    </form>
-</header>
-<main class="container">
-    {% block content %}{% endblock %}
-</main>
+<body class="bg-white text-gray-800 min-h-screen text-base">
+<div class="min-h-screen flex flex-col items-center">
+    <header class="w-full bg-white py-4 border-b">
+        <div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
+            <h1 class="flex items-center space-x-4">
+                <img class="h-8 w-8" src="/img/todo-white.svg" alt="TODO Logo">
+                <span class="text-2xl font-bold text-blue-500">TODOApp</span>
+            </h1>
+            <form hx-get="/todos"
+                  hx-trigger="input delay:200ms, search"
+                  hx-target="main"
+                  hx-push-url="true"
+                  class="w-96">
+                <input type="search"
+                       name="q"
+                       value="{{ search }}"
+                       placeholder="Search todos..."
+                       class="w-full px-4 py-2 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-400 text-lg">
+            </form>
+        </div>
+    </header>
+
+    <main class="w-full max-w-7xl px-8 py-8">
+        {% block content %}{% endblock %}
+    </main>
+</div>
 </body>
 </html>
