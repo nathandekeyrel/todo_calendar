@@ -3,13 +3,129 @@
 @tailwind utilities;
 
 @layer components {
+    /* layout */
+    .container-wide {
+        @apply max-w-2xl mx-auto px-4;
+    }
+
+    .container-calendar {
+        @apply max-w-6xl mx-auto px-4;
+    }
+
     .page-container {
-        @apply w-full max-w-7xl px-8 py-8;
+        @apply w-full max-w-5xl px-4 py-4;
+    }
+
+    /* header */
+    .app-logo {
+        @apply flex items-center space-x-2;
+    }
+
+    .app-title {
+        @apply text-xl font-bold text-blue-500;
+    }
+
+    /* form */
+    .input-base {
+        @apply px-2 py-1.5 rounded bg-white border border-gray-200
+        focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800;
+    }
+
+    .input-text {
+        @apply input-base placeholder-gray-400;
+    }
+
+    .input-date {
+        @apply input-base w-32 py-1;
+    }
+
+    .input-select {
+        @apply input-base w-24 py-1;
+    }
+
+    .search-input {
+        @apply w-full px-3 py-1.5 rounded bg-white border border-gray-200
+        focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+        text-gray-800 placeholder-gray-400;
+    }
+
+    .radio-group {
+        @apply flex items-center space-x-2;
+    }
+
+    .radio-label {
+        @apply flex items-center space-x-1.5 cursor-pointer;
+    }
+
+    .radio-input {
+        @apply text-blue-500 focus:ring-1 focus:ring-offset-0
+        focus:ring-blue-500 bg-white border-gray-300;
+    }
+
+    /* buttons */
+    .btn {
+        @apply px-2 py-1 rounded transition-colors text-sm cursor-pointer;
+    }
+
+    .btn-default {
+        @apply btn bg-white border border-gray-200 hover:bg-gray-50 cursor-pointer;
+    }
+
+    .btn-active {
+        @apply btn bg-blue-500 text-white cursor-pointer;
     }
 
     .btn-primary {
-        @apply px-4 py-2 bg-blue-500 text-white rounded
-               hover:bg-blue-600 transition-colors
-               font-medium;
+        @apply btn bg-blue-500 text-white hover:bg-blue-600 font-medium cursor-pointer;
+    }
+
+    /* todos */
+    .todo-form {
+        @apply bg-white rounded border shadow-sm;
+    }
+
+    .todo-item {
+        @apply bg-white border rounded hover:bg-gray-50 transition-colors;
+    }
+
+    .todo-text {
+        @apply flex-1;
+    }
+
+    .todo-completed {
+        @apply line-through text-gray-400;
+    }
+
+    .todo-date {
+        @apply text-blue-500 text-sm ml-2;
+    }
+
+    .todo-recurring {
+        @apply text-xs text-blue-400 ml-1;
+    }
+
+    .todo-container {
+        @apply space-y-1.5 max-h-[250px] overflow-y-auto;
+    }
+
+    /* calendar */
+    .calendar-cell {
+        @apply bg-white border rounded p-3 min-h-[200px] min-w-[125px] hover:bg-gray-50 transition-colors;
+    }
+
+    .calendar-cell-inactive {
+        @apply bg-gray-50 rounded p-3 min-h-[200px] min-w-[125px];
+    }
+
+    .calendar-day-header {
+        @apply text-center text-gray-500 font-medium py-1.5;
+    }
+
+    .calendar-date {
+        @apply text-base font-medium text-blue-500 mb-2;
+    }
+
+    .calendar-date-inactive {
+        @apply text-gray-400 font-medium;
     }
 }

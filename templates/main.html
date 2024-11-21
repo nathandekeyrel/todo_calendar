@@ -1,6 +1,6 @@
-<form action="/todos" method="post" class="bg-white rounded-lg shadow-sm border">
-    <div class="flex items-center space-x-4 p-4">
-        <input class="flex-1 px-3 py-2 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-400"
+<form action="/todos" method="post" class="todo-form">
+    <fieldset class="flex items-center space-x-4 p-4">
+        <input class="input-text flex-1"
                 {{ 'autofocus' if editing is undefined and not search }}
                required
                type="text"
@@ -8,22 +8,22 @@
                id="new-todo-input"
                placeholder="Enter todos...?">
 
-        <div class="flex items-center space-x-3">
-            <label class="flex items-center space-x-2 cursor-pointer">
+        <fieldset class="radio-group">
+            <label class="radio-label">
                 <input type="radio" name="priority" value="0" checked
-                       class="text-blue-500 focus:ring-1 focus:ring-offset-0 focus:ring-blue-500 bg-white border-gray-300"
+                       class="radio-input"
                        data-hx-on:change="document.getElementById('new-todo-input').focus()">
                 <span>Low</span>
             </label>
-            <label class="flex items-center space-x-2 cursor-pointer">
+            <label class="radio-label">
                 <input type="radio" name="priority" value="1"
-                       class="text-blue-500 focus:ring-1 focus:ring-offset-0 focus:ring-blue-500 bg-white border-gray-300"
+                       class="radio-input"
                        data-hx-on:change="document.getElementById('new-todo-input').focus()">
                 <span>!</span>
             </label>
-            <label class="flex items-center space-x-2 cursor-pointer">
+            <label class="radio-label">
                 <input type="radio" name="priority" value="2"
-                       class="text-blue-500 focus:ring-1 focus:ring-offset-0 focus:ring-blue-500 bg-white border-gray-300"
+                       class="radio-input"
                        data-hx-on:change="document.getElementById('new-todo-input').focus()">
                 <span>!!</span>
             </label>
@@ -34,11 +34,11 @@
                    value={{ date_today }}
                            min="2024-11-11"
                    max="2025-11-11"
-                   class="w-32 px-2 py-1 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800"
+                   class="input-date"
                    data-hx-on:change="document.getElementById('new-todo-input').focus()"/>
 
             <select name="recurring"
-                    class="w-24 px-2 py-1 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800"
+                    class="input-select"
                     data-hx-on:change="document.getElementById('new-todo-input').focus()">
                 <option value="">Never</option>
                 <option value="daily">Daily</option>
@@ -46,65 +46,64 @@
                 <option value="monthly">Monthly</option>
                 <option value="yearly">Yearly</option>
             </select>
-        </div>
+        </fieldset>
 
         <input type="hidden" name="view" value="{{ view }}">
-    </div>
+    </fieldset>
 </form>
 
-<div class="flex space-x-4 py-2 text-sm">
+<nav class="flex space-x-4 py-2 text-sm">
     <a hx-get="/todos/reorder"
        hx-target="#todos-list"
        hx-swap="outerHTML"
-       class="px-3 py-1 rounded bg-white border border-gray-200 hover:bg-gray-50 transition-colors">
+       class="btn-default">
         Reorder
     </a>
     <a hx-get="/todos/calendar"
-       hx-target="main"
+       hx-target="#main"
        hx-swap="innerHTML"
-       class="px-3 py-1 rounded bg-white border border-gray-200 hover:bg-gray-50 transition-colors">
+       hx-on:click="document.getElementById('main').classList.remove('max-w-2xl'); document.getElementById('main').classList.add('max-w-6xl')"
+       class="btn-default">
         Calendar
     </a>
-</div>
+</nav>
 
-<div id="todos-list" class="space-y-1">
+<ul id="todos-list" class="space-y-1">
     {% for todo in todos %}
-        <div class="bg-white border rounded hover:bg-gray-50 transition-colors">
+        <li class="todo-item">
             {% if todo.id == editing %}
                 <form method="post" action="/todos/{{ todo.id }}" class="p-3">
-                    <div class="flex items-center space-x-4">
-                        <input class="flex-1 px-3 py-1.5 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800"
-                               autofocus required type="text"
+                    <fieldset class="flex items-center space-x-4">
+                        <input class="input-text flex-1"
+                               autofocus required
+                               type="text"
                                value="{{ todo.text }}"
                                name="todo"
                                id="edit-todo-input-{{ todo.id }}">
 
-                        <div class="flex items-center space-x-2 text-sm">
-                            <label class="flex items-center space-x-1 cursor-pointer">
-                                <input type="radio" name="priority" value="0" {{ 'checked' if todo.priority == 0 }}
-                                       class="text-blue-500 focus:ring-1 focus:ring-blue-500 bg-white border-gray-300"
-                                       data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
-                                <span>Low</span>
-                            </label>
-                            <label class="flex items-center space-x-1 cursor-pointer">
-                                <input type="radio" name="priority" value="1" {{ 'checked' if todo.priority == 1 }}
-                                       class="text-blue-500 focus:ring-1 focus:ring-blue-500 bg-white border-gray-300"
-                                       data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
-                                <span>!</span>
-                            </label>
-                            <label class="flex items-center space-x-1 cursor-pointer">
-                                <input type="radio" name="priority" value="2" {{ 'checked' if todo.priority == 2 }}
-                                       class="text-blue-500 focus:ring-1 focus:ring-blue-500 bg-white border-gray-300"
-                                       data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
-                                <span>!!</span>
-                            </label>
+                        <fieldset class="radio-group text-sm">
+                            <legend class="sr-only">Priority Level</legend>
+                            {% for priority, label in [(0, 'Low'), (1, '!'), (2, '!!')] %}
+                                <label class="radio-label">
+                                    <input type="radio"
+                                           name="priority"
+                                           value="{{ priority }}"
+                                            {{ 'checked' if todo.priority == priority }}
+                                           class="radio-input"
+                                           data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
+                                    <span>{{ label }}</span>
+                                </label>
+                            {% endfor %}
 
-                            <input type="date" name="due_date" required value="{{ todo.due_date }}"
-                                   class="w-32 px-2 py-1 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800 text-sm"
+                            <input type="date"
+                                   name="due_date"
+                                   required
+                                   value="{{ todo.due_date }}"
+                                   class="input-date text-sm"
                                    data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()"/>
 
                             <select name="recurring"
-                                    class="w-24 px-2 py-1 rounded bg-white border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800 text-sm"
+                                    class="input-select text-sm"
                                     data-hx-on:change="document.getElementById('edit-todo-input-{{ todo.id }}').focus()">
                                 <option value="" {{ 'selected' if todo.recurring == None }}>Never</option>
                                 <option value="daily" {{ 'selected' if todo.recurring == 'daily' }}>Daily</option>
@@ -112,8 +111,8 @@
                                 <option value="monthly" {{ 'selected' if todo.recurring == 'monthly' }}>Monthly</option>
                                 <option value="yearly" {{ 'selected' if todo.recurring == 'yearly' }}>Yearly</option>
                             </select>
-                        </div>
-                    </div>
+                        </fieldset>
+                    </fieldset>
                 </form>
             {% else %}
                 <div class="flex items-center p-2">
@@ -136,30 +135,27 @@
                                     {{ todo.return_formatted_date() }}
                                 </span>
                             {% if todo.recurring %}
-                                <span class="text-xs text-blue-400 ml-1">({{ todo.recurring }})</span>
+                                <span class="todo-recurring">({{ todo.recurring }})</span>
                             {% endif %}
-                            </span>
+                        </span>
                     </form>
                     <form id="edit-{{ todo.id }}" action="/todos/{{ todo.id }}/edit" method="get">
                         <input type="hidden" name="view" value="{{ view }}">
                     </form>
                 </div>
             {% endif %}
-        </div>
+        </li>
     {% endfor %}
-</div>
+</ul>
 
 <nav hx-target="main" hx-push-url="true" class="flex space-x-4 py-2 text-sm">
-    <a hx-get="/todos"
-       class="px-3 py-1 rounded {{ 'bg-blue-500 text-white' if view == None else 'bg-white border border-gray-200 hover:bg-gray-50' }} transition-colors">
+    <a hx-get="/todos" class="{{ 'btn-active' if view == None else 'btn-default' }}">
         All
     </a>
-    <a hx-get="/todos?view=active"
-       class="px-3 py-1 rounded {{ 'bg-blue-500 text-white' if view == 'active' else 'bg-white border border-gray-200 hover:bg-gray-50' }} transition-colors">
+    <a hx-get="/todos?view=active" class="{{ 'btn-active' if view == 'active' else 'btn-default' }}">
         Active
     </a>
-    <a hx-get="/todos?view=complete"
-       class="px-3 py-1 rounded {{ 'bg-blue-500 text-white' if view == 'complete' else 'bg-white border border-gray-200 hover:bg-gray-50' }} transition-colors">
+    <a hx-get="/todos?view=complete" class="{{ 'btn-active' if view == 'complete' else 'btn-default' }}">
         Complete
     </a>
 </nav>
