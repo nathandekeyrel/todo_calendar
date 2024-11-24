@@ -18,16 +18,28 @@ class Todo(Model):
     recurring = CharField(null=True)
 
     @classmethod
-    def all(cls, view, search=None):
+    def all(cls, view, search=None, sort=None):
         select = Todo.select()
 
         if view == "active":
             select = select.where(Todo.complete == False)
         if view == "complete":
             select = select.where(Todo.complete == True)
+            print("completes")
         if search:
             select = select.where(Todo.text.contains(search))
-
+        if(sort == "prio-a"):
+            return select.order_by(Todo.priority.asc(), Todo.order)
+        if(sort == "prio-d"):
+            return select.order_by(Todo.priority.desc(), Todo.order)
+        if(sort == "date-a"):
+            return select.order_by(Todo.due_date.asc(), Todo.order)
+        if(sort == "date-d"):
+            return select.order_by(Todo.due_date.desc(), Todo.order)
+        if(sort == "alpha-a"):
+            return select.order_by(fn.Lower(Todo.text).asc(), Todo.order)
+        if(sort == "alpha-d"):
+            return select.order_by(fn.Lower(Todo.text).desc(), Todo.order)
         return select.order_by(Todo.priority.desc(), Todo.order)
 
     @classmethod
@@ -134,7 +146,7 @@ class Todo(Model):
 
     def priority_marker(self):
         priority_marks = "!" * self.priority
-        return f"{priority_marks:5}"
+        return f" {priority_marks:>10}"
 
     class Meta:
         database = db

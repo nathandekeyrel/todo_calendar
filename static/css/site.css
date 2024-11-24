@@ -1546,3 +1546,29 @@ select {
 .\[\&\.calendar-view\]\:max-w-6xl.calendar-view {
   max-width: 72rem;
 }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 5%;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}
+.dropdown-content a {
+    display: block;
+    color: #000000;
+    background-color:white;
+    padding: 5px;
+    text-decoration: none;
+}

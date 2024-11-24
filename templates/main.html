@@ -66,6 +66,22 @@
        class="btn-default">
         Calendar
     </a>
+
+    <select name="sort_option" hx-target="main" hx-push-url="true" hx-get="/todos" class="btn-default">
+
+        <option selected value="def">Sort By</option>
+        <option value="date-a" >Date (asc)</option>
+        <option value="date-d">Date (desc)</option>
+        <option value="prio-a">Priority (asc)</option>
+        <option value="prio-d">Priority (desc)</option>
+        <option value="alpha-a">Alphabetical (asc)</option>
+        <option value="alpha-d">Alphabetical (desc)</option>
+        <option value="def">Custom/Default</option>
+
+
+        <input type="hidden" name="view" value="{{ view }}">
+    </select>
+
 </nav>
 
 <ul id="todos-list" class="space-y-1">
@@ -120,7 +136,7 @@
                           hx-target="main"
                           ondblclick="document.getElementById('edit-{{ todo.id }}').submit()"
                           class="flex-1 flex items-center space-x-3">
-                        <span class="text-blue-500 text-sm">{{ todo.priority_marker() }}</span>
+                        <span style="min-width:10px;" class="text-blue-500 text-sm">{{ todo.priority_marker() }}</span>
                         <button class="hover:opacity-75 transition-opacity">
                             {% if todo.complete %}
                                 <img src="/img/todo-white.svg" class="w-4 h-4">

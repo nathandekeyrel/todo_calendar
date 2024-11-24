@@ -34,11 +34,13 @@ def index():
 def all_todos():
     view = request.args.get('view', None)
     query = request.args.get('q', '')
-    todos = Todo.all(view, query)
+    sort_type = request.args.get('sort_option', '')
+    todos = Todo.all(view, query, sort_type)
 
     if request.headers.get('HX-Request'):
         return render_template("main.html", todos=todos, view=view, search=query,
                                date_today=datetime.today().strftime('%Y-%m-%d'))
+
 
     return render_template("index.html", todos=todos, view=view, search=query,
                            date_today=datetime.today().strftime('%Y-%m-%d'))
@@ -68,6 +70,15 @@ def toggle_todo(id):
     todo.save()
     todos = Todo.all(view)
     return render_template("main.html", todos=todos, view=view, editing=None,
+                           date_today=datetime.today().strftime('%Y-%m-%d'))
+@app.post('/todos/<id>/toggle_on_cal')
+def toggle_todo_on_cal(id):
+    view = request.form.get('view', None)
+    todo = Todo.find(int(id))
+    todo.toggle_completed()
+    todo.save()
+    todos = Todo.all(view)
+    return render_template("calendar_todo.html", todo=todo, view=view, editing=None,
                            date_today=datetime.today().strftime('%Y-%m-%d'))
 
 

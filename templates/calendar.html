@@ -50,13 +50,35 @@
                 <div class="calendar-date">{{ i }}</div>
                 <div class="todo-container">
                     {% for todo in todos %}
-                        <div class="todo-item {{ 'todo-item-completed' if todo.complete }}">
-                            {{ todo.text }}
-                            <span class="text-blue-500">{{ todo.priority_marker() }}</span>
-                            {% if todo.recurring %}
-                                <span class="todo-recurring-tag">({{ todo.recurring }})</span>
+                         <form hx-post="/todos/{{ todo.id }}/toggle_on_cal"
+                          hx-target="this"
+                          >
+
+                        <button class="hover:opacity-75 transition-opacity">
+                            {% if todo.complete %}
+                                <img src="/img/todo-white.svg" class="w-4 h-4">
+                            {% else %}
+                                <img src="/img/unchecked-white.svg" class="w-4 h-4">
                             {% endif %}
-                        </div>
+                        </button>
+                        <input type="hidden" name="view" value="{{ view }}">
+                        <span class="todo-item {{ 'line-through text-gray-400' if todo.complete }}">
+                                <span class="text-blue-500">{{ todo.priority_marker() }}</span>
+                                {{ todo.text }}
+
+                            {% if todo.recurring %}
+                                <span class="todo-recurring">({{ todo.recurring }})</span>
+                            {% endif %}
+                        </span>
+                    </form>
+
+<!--                        <div class="todo-item {{ 'todo-item-completed' if todo.complete }}">-->
+<!--                            {{ todo.text }}-->
+<!--                            <span class="text-blue-500">{{ todo.priority_marker() }}</span>-->
+<!--                            {% if todo.recurring %}-->
+<!--                                <span class="todo-recurring-tag">({{ todo.recurring }})</span>-->
+<!--                            {% endif %}-->
+<!--                        </div>-->
                     {% endfor %}
                 </div>
             </div>
