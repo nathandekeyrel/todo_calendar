@@ -158,6 +158,12 @@
                     <form id="edit-{{ todo.id }}" action="/todos/{{ todo.id }}/edit" method="get">
                         <input type="hidden" name="view" value="{{ view }}">
                     </form>
+                    <form hx-post="/todos/{{ todo.id }}/delete" hx-target="main" class="flex items-center space-x-3">
+
+                        <button class="hover:opacity-75 transition-opacity">
+                            <img src="/img/delete-svgrepo-com.svg" class="w-4 h-4">
+                        </button>
+                     </form>
                 </div>
             {% endif %}
         </li>

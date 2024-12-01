@@ -118,6 +118,13 @@ def update_todo_order():
     return render_template("main.html", todos=todos, view=view, editing=None,
                            date_today=datetime.today().strftime('%Y-%m-%d'))
 
+@app.post('/todos/<id>/delete')
+def delete_todo(id):
+    todo = Todo.find(int(id))
+    todo.delete_instance()
+    todos = Todo.all(request.form.get('view', None))
+    return render_template("main.html", todos=todos, view=request.form.get('view', None))
+
 
 @app.get('/todos/calendar')
 def calendar_view():

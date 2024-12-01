@@ -92,6 +92,11 @@ class Todo(Model):
             i = i + 1
             todo.save()
 
+    def delete_instance(self, *args, **kwargs):
+        # Calls the pewee delete_instance method and then that does the magic
+        # idk but it makes it really easy for some reason.
+        super().delete_instance(*args, **kwargs)
+
     @classmethod
     def get_date(cls, date):
         first_of_month = datetime.datetime(date.year, date.month, 1)
