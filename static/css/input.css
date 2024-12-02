@@ -110,11 +110,11 @@
 
     /* calendar */
     .calendar-cell {
-        @apply bg-white border rounded p-3 min-h-[200px] min-w-[125px] hover:bg-gray-50 transition-colors;
+        @apply bg-white border rounded p-3 min-h-[200px] min-w-[150px] hover:bg-gray-50 transition-colors;
     }
 
     .calendar-cell-inactive {
-        @apply bg-gray-50 rounded p-3 min-h-[200px] min-w-[125px];
+        @apply bg-gray-50 rounded p-3 min-h-[200px] min-w-[150px];
     }
 
     .calendar-day-header {

@@ -1111,7 +1111,7 @@ select {
 
 .calendar-cell {
   min-height: 200px;
-  min-width: 125px;
+  min-width: 150px;
   border-radius: 0.25rem;
   border-width: 1px;
   --tw-bg-opacity: 1;
@@ -1129,7 +1129,7 @@ select {
 
 .calendar-cell-inactive {
   min-height: 200px;
-  min-width: 125px;
+  min-width: 150px;
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
@@ -1209,10 +1209,6 @@ select {
   margin-bottom: 1.5rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
 .block {
   display: block;
 }
@@ -1265,32 +1261,12 @@ select {
   width: 1.5rem;
 }
 
-.w-80 {
-  width: 20rem;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
 .w-8 {
   width: 2rem;
 }
 
-.min-w-0\.5 {
-  min-width: 0.125rem;
-}
-
-.min-w-1 {
-  min-width: 0.25rem;
-}
-
-.min-w-5 {
-  min-width: 1.25rem;
+.w-80 {
+  width: 20rem;
 }
 
 .max-w-2xl {
@@ -1329,10 +1305,6 @@ select {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
-.grid-cols-\[auto_1fr_auto\] {
-  grid-template-columns: auto 1fr auto;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -1345,12 +1317,12 @@ select {
   justify-content: space-between;
 }
 
-.gap-4 {
-  gap: 1rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
@@ -1462,14 +1434,6 @@ select {
 
 .text-center {
   text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-2xl {
