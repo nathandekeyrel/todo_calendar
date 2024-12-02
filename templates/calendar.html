@@ -63,7 +63,7 @@
                         </button>
                         <input type="hidden" name="view" value="{{ view }}">
                         <span class="todo-item {{ 'line-through text-gray-400' if todo.complete }}">
-                                <span class="text-blue-500">{{ todo.priority_marker() }}</span>
+                                <span class="text-red-500">{{ todo.priority_marker() }}</span>
                                 {{ todo.text }}
 
                             {% if todo.recurring %}
