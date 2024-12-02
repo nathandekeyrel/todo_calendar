@@ -28,17 +28,17 @@ class Todo(Model):
             print("completes")
         if search:
             select = select.where(Todo.text.contains(search))
-        if(sort == "prio-a"):
+        if sort == "prio-a":
             return select.order_by(Todo.priority.asc(), Todo.order)
-        if(sort == "prio-d"):
+        if sort == "prio-d":
             return select.order_by(Todo.priority.desc(), Todo.order)
-        if(sort == "date-a"):
+        if sort == "date-a":
             return select.order_by(Todo.due_date.asc(), Todo.order)
-        if(sort == "date-d"):
+        if sort == "date-d":
             return select.order_by(Todo.due_date.desc(), Todo.order)
-        if(sort == "alpha-a"):
+        if sort == "alpha-a":
             return select.order_by(fn.Lower(Todo.text).asc(), Todo.order)
-        if(sort == "alpha-d"):
+        if sort == "alpha-d":
             return select.order_by(fn.Lower(Todo.text).desc(), Todo.order)
         return select.order_by(Todo.priority.desc(), Todo.order)
 
@@ -150,8 +150,7 @@ class Todo(Model):
         return base_query.order_by(Todo.priority.desc(), Todo.order)
 
     def priority_marker(self):
-        priority_marks = "!" * self.priority
-        return f" {priority_marks:>10}"
+        return '!' * self.priority if self.priority > 0 else ''
 
     class Meta:
         database = db

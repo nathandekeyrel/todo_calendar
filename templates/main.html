@@ -1,4 +1,4 @@
-<form action="/todos" method="post" class="todo-form">
+<form hx-post="/todos" hx-target="main" class="todo-form">
     <fieldset class="flex items-center space-x-4 p-4">
         <input class="input-text flex-1"
                 {{ 'autofocus' if editing is undefined and not search }}
@@ -70,7 +70,7 @@
     <select name="sort_option" hx-target="main" hx-push-url="true" hx-get="/todos" class="btn-default">
 
         <option selected value="def">Sort By</option>
-        <option value="date-a" >Date (asc)</option>
+        <option value="date-a">Date (asc)</option>
         <option value="date-d">Date (desc)</option>
         <option value="prio-a">Priority (asc)</option>
         <option value="prio-d">Priority (desc)</option>
@@ -88,7 +88,7 @@
     {% for todo in todos %}
         <li class="todo-item">
             {% if todo.id == editing %}
-                <form method="post" action="/todos/{{ todo.id }}" class="p-3">
+                <form hx-post="/todos/{{ todo.id }}" hx-target="main" hx-push-url="true" class="p-3">
                     <fieldset class="flex items-center space-x-4">
                         <input class="input-text flex-1"
                                autofocus required
@@ -134,9 +134,7 @@
                 <div class="flex items-center p-2">
                     <form hx-post="/todos/{{ todo.id }}/toggle"
                           hx-target="main"
-                          ondblclick="document.getElementById('edit-{{ todo.id }}').submit()"
                           class="flex-1 flex items-center space-x-3">
-                        <span style="min-width:10px;" class="text-blue-500 text-sm">{{ todo.priority_marker() }}</span>
                         <button class="hover:opacity-75 transition-opacity">
                             {% if todo.complete %}
                                 <img src="/img/todo-white.svg" class="w-4 h-4">
@@ -144,26 +142,33 @@
                                 <img src="/img/unchecked-white.svg" class="w-4 h-4">
                             {% endif %}
                         </button>
-                        <input type="hidden" name="view" value="{{ view }}">
-                        <span class="flex-1 {{ 'line-through text-gray-400' if todo.complete }}">
-                                {{ todo.text }}
-                                <span class="text-blue-500 text-sm ml-2">
-                                    {{ todo.return_formatted_date() }}
-                                </span>
+                        <span hx-get="/todos/{{ todo.id }}/edit"
+                              hx-trigger="dblclick"
+                              hx-target="main"
+                              hx-push-url="true"
+                              class="flex items-center gap-2">
+                        {% if todo.complete %}
+                            <del class="flex items-center gap-2">
+                        {% endif %}
+                            <span class="flex-1">{{ todo.text }}</span>
+                            <span class="text-red-500 text-sm w-8 text-center">{{ todo.priority_marker() }}</span>
+                            <span class="text-blue-500 text-sm">{{ todo.return_formatted_date() }}</span>
                             {% if todo.recurring %}
-                                <span class="todo-recurring">({{ todo.recurring }})</span>
+                                <span class="text-sm">({{ todo.recurring }})</span>
                             {% endif %}
+                        {% if todo.complete %}
+                            </del>
+                        {% endif %}
                         </span>
-                    </form>
-                    <form id="edit-{{ todo.id }}" action="/todos/{{ todo.id }}/edit" method="get">
                         <input type="hidden" name="view" value="{{ view }}">
                     </form>
+
                     <form hx-post="/todos/{{ todo.id }}/delete" hx-target="main" class="flex items-center space-x-3">
 
                         <button class="hover:opacity-75 transition-opacity">
                             <img src="/img/delete-svgrepo-com.svg" class="w-4 h-4">
                         </button>
-                     </form>
+                    </form>
                 </div>
             {% endif %}
         </li>
