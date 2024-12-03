@@ -163,7 +163,7 @@
                         <input type="hidden" name="view" value="{{ view }}">
                     </form>
 
-                    <form hx-post="/todos/{{ todo.id }}/delete" hx-target="main" class="flex items-center space-x-3">
+                    <form hx-post="/todos/{{ todo.id }}/delete" hx-target="main" hx-confirm="Are you sure you want to delete this?" class="flex items-center space-x-3">
 
                         <button class="hover:opacity-75 transition-opacity">
                             <img src="/img/delete-svgrepo-com.svg" class="w-4 h-4">
